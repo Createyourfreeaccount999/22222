@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board Vue</title>
+ <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/vue.js"></script>
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Kanban Board</h1>
+
+    <div class="board">
+      <div class="column" :class="{ locked: isCol1Locked }">
+        <h2>Сделать</h2>
+
+        <task-card
+          v-for="card in col1"
+          :key="card.id"
+          :card="card"
+          :col="'col1'"
+          :is-col1-locked="isCol1Locked"
+          @update="updateCard"
+        ></task-card>
+
+        <div class="add-card">
+          <h3>Новая карточка</h3>
+          <input v-model="newTitle" placeholder="Название карточки" />
+          <div v-for="(item, idx) in newItems" :key="idx" class="new-item">
+            <input v-model="newItems[idx]" placeholder="Пункт (минимум 3)" />
+          </div>
+          <div class="add-controls">
+            <button @click="addItem" :disabled="newItems.length >= 5">Добавить пункт</button>
+            <button @click="addCard">Добавить карточку</button>
+          </div>
+          <p class="hint">Колонка 1: максимум 3 карточки. Пункты: 3–5.</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2>В процессе ({{ col2.length }} / 5)</h2>
+
+        <task-card
+          v-for="card in col2"
+          :key="card.id"
+          :card="card"
+          :col="'col2'"
+          :is-col1-locked="false"
+          @update="updateCard"
+        ></task-card>
+      </div>
+
+      <div class="column">
+        <h2>Выполнено</h2>
+
+        <task-card
+          v-for="card in col3"
+          :key="card.id"
+          :card="card"
+          :col="'col3'"
+          :is-col1-locked="false"
+          @update="updateCard"
+        ></task-card>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

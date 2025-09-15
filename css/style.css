@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  width: 300px;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card.completed {
+  background: #d4edda;
+}
+
+.add-card input {
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
